@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HarithaSakthi – Eco Farming Awareness</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #1a3a2a;
+    --green-mid: #2d6a4f;
+    --green-bright: #52b788;
+    --green-light: #95d5b2;
+    --cream: #f8f4ec;
+    --amber: #e9a93b;
+    --brown: #6b4226;
+    --soil: #8b5e3c;
+    --white: #ffffff;
+    --text: #1a2e1a;
+    --text-light: #4a6741;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 999;
+    background: rgba(26,58,42,0.96);
+    backdrop-filter: blur(12px);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+    border-bottom: 1px solid rgba(82,183,136,0.2);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 900;
+    color: var(--green-light);
+    letter-spacing: 1px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo span { color: var(--amber); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none; font-size: 0.88rem;
+    font-weight: 500; letter-spacing: 0.5px;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content:''; position:absolute; bottom:-4px; left:0;
+    width:0; height:2px; background:var(--green-bright);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--green-light); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh;
+    background: var(--green-deep);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center;
+    padding: 100px 5% 60px;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(45,106,79,0.5) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 10% 80%, rgba(82,183,136,0.15) 0%, transparent 60%);
+  }
+  .hero-leaves {
+    position: absolute; inset: 0; pointer-events: none;
+    overflow: hidden;
+  }
+  .leaf {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.07;
+    animation: float 8s ease-in-out infinite;
+  }
+  .leaf:nth-child(1) { top:15%; left:5%; animation-delay:0s; font-size:3rem; }
+  .leaf:nth-child(2) { top:60%; left:2%; animation-delay:1.5s; font-size:1.5rem; }
+  .leaf:nth-child(3) { top:30%; right:8%; animation-delay:3s; font-size:2.5rem; }
+  .leaf:nth-child(4) { top:75%; right:5%; animation-delay:2s; font-size:2rem; }
+  .leaf:nth-child(5) { top:10%; right:25%; animation-delay:4s; font-size:1.8rem; }
+  .leaf:nth-child(6) { top:85%; left:30%; animation-delay:2.5s; font-size:2.2rem; }
+  @keyframes float {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(10deg); }
+  }
+
+  .hero-content { position: relative; z-index:2; max-width: 700px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(82,183,136,0.15);
+    border: 1px solid rgba(82,183,136,0.4);
+    color: var(--green-light); font-size: 0.8rem;
+    padding: 6px 16px; border-radius: 50px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    margin-bottom: 24px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1.05; font-weight: 900;
+    color: var(--white); margin-bottom: 24px;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+  .hero-title .accent { color: var(--green-bright); }
+  .hero-title .amber { color: var(--amber); }
+  .hero-sub {
+    font-size: 1.1rem; line-height: 1.8;
+    color: rgba(255,255,255,0.7); margin-bottom: 40px; max-width: 560px;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.6s ease both;
+  }
+  .btn-primary {
+    background: var(--green-bright); color: var(--green-deep);
+    padding: 14px 32px; border-radius: 4px;
+    font-weight: 700; font-size: 0.95rem; letter-spacing: 0.5px;
+    text-decoration: none; transition: all 0.3s;
+    border: 2px solid var(--green-bright);
+  }
+  .btn-primary:hover { background: var(--green-light); border-color: var(--green-light); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--white);
+    padding: 14px 32px; border-radius: 4px;
+    font-weight: 500; font-size: 0.95rem;
+    text-decoration: none; transition: all 0.3s;
+    border: 2px solid rgba(255,255,255,0.3);
+  }
+  .btn-outline:hover { border-color: var(--green-bright); color: var(--green-light); }
+
+  .hero-stats {
+    display: flex; gap: 40px; margin-top: 60px; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.8s ease both;
+  }
+  .stat { border-left: 3px solid var(--green-bright); padding-left: 16px; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900; color: var(--white);
+  }
+  .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 2px; }
+
+  @keyframes fadeUp {
+    from { opacity:0; transform: translateY(30px); }
+    to { opacity:1; transform: translateY(0); }
+  }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 90px 5%; }
+  .section-label {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--green-mid);
+    border-left: 3px solid var(--green-bright); padding-left: 12px;
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
+    line-height: 1.2; margin-bottom: 16px;
+    color: var(--green-deep);
+  }
+  .section-sub {
+    font-size: 1rem; line-height: 1.8; color: var(--text-light);
+    max-width: 600px; margin-bottom: 48px;
+  }
+
+  /* ── PROBLEM ── */
+  #problem { background: var(--white); }
+  .problem-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+    gap: 24px; margin-top: 12px;
+  }
+  .problem-card {
+    background: var(--cream); border-radius: 8px;
+    padding: 32px 28px;
+    border-top: 4px solid var(--amber);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .problem-card::before {
+    content:''; position:absolute; bottom:-30px; right:-30px;
+    width:100px; height:100px; border-radius:50%;
+    background: rgba(233,169,59,0.06);
+  }
+  .problem-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+  .problem-icon { font-size: 2.4rem; margin-bottom: 16px; }
+  .problem-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700;
+    color: var(--green-deep); margin-bottom: 10px;
+  }
+  .problem-card p { font-size: 0.92rem; line-height: 1.7; color: var(--text-light); }
+
+  /* ── FERTILIZERS ── */
+  #fertilizers { background: var(--green-deep); }
+  #fertilizers .section-label { color: var(--green-light); }
+  #fertilizers .section-title { color: var(--white); }
+  #fertilizers .section-sub { color: rgba(255,255,255,0.6); }
+
+  .fert-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+    gap: 24px;
+  }
+  .fert-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(82,183,136,0.2);
+    border-radius: 12px; padding: 32px;
+    transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .fert-card:hover {
+    background: rgba(82,183,136,0.1);
+    border-color: var(--green-bright);
+    transform: translateY(-4px);
+  }
+  .fert-emoji { font-size: 2.8rem; margin-bottom: 16px; display: block; }
+  .fert-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; color: var(--green-light); margin-bottom: 8px;
+  }
+  .fert-card p { font-size: 0.9rem; line-height: 1.7; color: rgba(255,255,255,0.6); }
+  .fert-tag {
+    display: inline-block; margin-top: 14px;
+    background: rgba(82,183,136,0.15);
+    color: var(--green-bright); font-size: 0.75rem;
+    padding: 4px 12px; border-radius: 50px;
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* ── CROPS TABLE ── */
+  #crops { background: var(--cream); }
+  .crops-wrapper { overflow-x: auto; border-radius: 12px; box-shadow: 0 8px 40px rgba(0,0,0,0.06); }
+  table { width: 100%; border-collapse: collapse; background: var(--white); }
+  thead { background: var(--green-deep); }
+  thead th {
+    padding: 18px 24px; text-align: left;
+    color: var(--green-light); font-size: 0.82rem;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 1px; text-transform: uppercase;
+    font-weight: 400;
+  }
+  tbody tr { border-bottom: 1px solid rgba(0,0,0,0.05); transition: background 0.2s; }
+  tbody tr:hover { background: rgba(82,183,136,0.05); }
+  tbody td { padding: 16px 24px; font-size: 0.92rem; color: var(--text); }
+  tbody td:first-child { font-weight: 600; color: var(--green-deep); }
+  .tag-pill {
+    display: inline-block;
+    background: rgba(45,106,79,0.1); color: var(--green-mid);
+    font-size: 0.75rem; padding: 3px 10px; border-radius: 50px;
+    margin: 2px; font-weight: 500;
+  }
+  .benefit-dot {
+    display: inline-block; width: 8px; height: 8px;
+    border-radius: 50%; background: var(--green-bright);
+    margin-right: 8px;
+  }
+
+  /* ── TREES ── */
+  #trees { background: var(--white); }
+  .trees-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .trees-visual {
+    background: var(--green-deep); border-radius: 16px;
+    padding: 48px 40px; position: relative; overflow: hidden;
+  }
+  .trees-visual::before {
+    content:'🌳';
+    position:absolute; font-size:12rem;
+    opacity: 0.06; right:-20px; bottom:-20px;
+  }
+  .tree-fact {
+    display: flex; align-items: flex-start; gap: 16px;
+    margin-bottom: 28px; padding-bottom: 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .tree-fact:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .tree-fact-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: rgba(82,183,136,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; flex-shrink: 0;
+  }
+  .tree-fact-text h4 { color: var(--green-light); font-size: 0.95rem; margin-bottom: 4px; }
+  .tree-fact-text p { color: rgba(255,255,255,0.55); font-size: 0.87rem; line-height: 1.6; }
+
+  .trees-text .section-sub { margin-bottom: 28px; }
+  .tree-list { list-style: none; }
+  .tree-list li {
+    display: flex; align-items: flex-start; gap: 12px;
+    margin-bottom: 16px; font-size: 0.93rem; line-height: 1.6;
+    color: var(--text-light);
+  }
+  .tree-list li::before {
+    content: '✦'; color: var(--green-bright);
+    flex-shrink: 0; margin-top: 2px;
+  }
+
+  @media(max-width:768px) {
+    .trees-layout { grid-template-columns: 1fr; }
+  }
+
+  /* ── AWARENESS ── */
+  #awareness {
+    background: linear-gradient(135deg, #f0f7f4 0%, #e8f5e9 100%);
+    position: relative; overflow: hidden;
+  }
+  #awareness::before {
+    content:''; position:absolute; top:-100px; right:-100px;
+    width:400px; height:400px; border-radius:50%;
+    background: rgba(82,183,136,0.08);
+  }
+  .awareness-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+    gap: 20px; position: relative; z-index: 1;
+  }
+  .awareness-card {
+    background: var(--white); border-radius: 12px; padding: 28px 24px;
+    text-align: center; transition: all 0.3s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    border-bottom: 4px solid transparent;
+  }
+  .awareness-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+    border-bottom-color: var(--green-bright);
+  }
+  .awareness-card .icon { font-size: 2.5rem; margin-bottom: 14px; }
+  .awareness-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; color: var(--green-deep); margin-bottom: 8px;
+  }
+  .awareness-card p { font-size: 0.87rem; line-height: 1.6; color: var(--text-light); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--green-deep); }
+  #contact .section-title { color: var(--white); }
+  #contact .section-label { color: var(--green-light); }
+  #contact .section-sub { color: rgba(255,255,255,0.55); }
+
+  .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+  .contact-info h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--white); font-size: 1.5rem; margin-bottom: 20px;
+  }
+  .contact-info p { color: rgba(255,255,255,0.6); line-height: 1.8; margin-bottom: 32px; }
+  .contact-detail {
+    display: flex; align-items: center; gap: 12px;
+    color: rgba(255,255,255,0.7); font-size: 0.92rem; margin-bottom: 14px;
+  }
+  .contact-detail span:first-child { font-size: 1.2rem; }
+
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label {
+    font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--green-light); font-family: 'Space Mono', monospace;
+  }
+  .form-group input, .form-group textarea, .form-group select {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(82,183,136,0.25);
+    border-radius: 6px; padding: 12px 16px;
+    color: var(--white); font-size: 0.93rem;
+    font-family: 'DM Sans', sans-serif;
+    transition: border-color 0.3s;
+    outline: none;
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: var(--green-bright); }
+  .form-group select option { background: var(--green-deep); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .btn-submit {
+    background: var(--green-bright); color: var(--green-deep);
+    border: none; padding: 14px 32px; border-radius: 6px;
+    font-weight: 700; font-size: 0.95rem; cursor: pointer;
+    letter-spacing: 0.5px; transition: all 0.3s; align-self: flex-start;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-submit:hover { background: var(--green-light); transform: translateY(-2px); }
+  .success-msg {
+    display: none; background: rgba(82,183,136,0.15);
+    border: 1px solid var(--green-bright); border-radius: 6px;
+    padding: 14px 20px; color: var(--green-light);
+    font-size: 0.93rem;
+  }
+
+  @media(max-width:768px) {
+    .contact-layout { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0f2419; padding: 32px 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+    border-top: 1px solid rgba(82,183,136,0.1);
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    color: var(--green-light); font-size: 1.1rem;
+    font-weight: 700;
+  }
+  footer p { color: rgba(255,255,255,0.4); font-size: 0.82rem; }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(40px); transition: all 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── MOBILE NAV ── */
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 2px; background: var(--white); transition: 0.3s; }
+  @media(max-width:760px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo">🌿 <span>Haritha</span>Sakthi</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#fertilizers">Fertilizers</a></li>
+    <li><a href="#crops">Crop Guide</a></li>
+    <li><a href="#trees">Trees</a></li>
+    <li><a href="#awareness">Awareness</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-leaves">
+    <div class="leaf">🍃</div><div class="leaf">🌿</div>
+    <div class="leaf">🍀</div><div class="leaf">🌱</div>
+    <div class="leaf">🍃</div><div class="leaf">🌿</div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">🌾 CSP Community Project</div>
+    <h1 class="hero-title">
+      Save Our Soil,<br>
+      <span class="accent">Grow</span> <span class="amber">Naturally</span>
+    </h1>
+    <p class="hero-sub">
+      Chemical fertilizers are quietly destroying our farmland, health, and future.
+      Discover traditional wisdom, natural fertilizers, and eco-friendly farming
+      techniques that have sustained agriculture for centuries.
+    </p>
+    <div class="hero-btns">
+      <a href="#fertilizers" class="btn-primary">Explore Natural Farming</a>
+      <a href="#crops" class="btn-outline">Crop-wise Guide →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">60%</div>
+        <div class="stat-label">Soil degraded by chemicals</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3x</div>
+        <div class="stat-label">More diseases near chemical farms</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">1000+</div>
+        <div class="stat-label">Years of traditional farming</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="reveal">
+    <span class="section-label">The Crisis</span>
+    <h2 class="section-title">Why Chemical Farming<br>Is Destroying Us</h2>
+    <p class="section-sub">Every season, millions of tons of chemical fertilizers seep into our soil, water, and food — with devastating long-term consequences.</p>
+  </div>
+  <div class="problem-grid reveal">
+    <div class="problem-card">
+      <div class="problem-icon">🏜️</div>
+      <h3>Soil Degradation</h3>
+      <p>Repeated chemical use kills beneficial microbes, hardens soil structure, and reduces its natural fertility — making land barren over time.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">💧</div>
+      <h3>Water Pollution</h3>
+      <p>Chemical runoff contaminates rivers, lakes, and groundwater. Over 60% of water bodies near agricultural zones show unsafe nitrate levels.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">🧬</div>
+      <h3>Health Risks</h3>
+      <p>Pesticide residue in food is linked to cancer, hormonal disruption, and neurological disorders — especially in children and farming communities.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">🐝</div>
+      <h3>Biodiversity Loss</h3>
+      <p>Chemical pesticides wipe out pollinators like bees and butterflies, disrupting food chains and reducing crop yields naturally.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">💸</div>
+      <h3>Farmer Debt Trap</h3>
+      <p>Dependency on expensive chemical inputs pushes farmers into debt cycles. Natural farming reduces input costs by up to 70%.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">🌡️</div>
+      <h3>Climate Impact</h3>
+      <p>Chemical agriculture contributes 25% of global greenhouse gas emissions, accelerating climate change and extreme weather events.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FERTILIZERS -->
+<section id="fertilizers">
+  <div class="reveal">
+    <span class="section-label">Natural Solutions</span>
+    <h2 class="section-title" style="color:var(--white)">Organic Fertilizers<br>That Actually Work</h2>
+    <p class="section-sub">Nature provides everything plants need. These time-tested organic fertilizers enrich soil while keeping it healthy for generations.</p>
+  </div>
+  <div class="fert-grid reveal">
+    <div class="fert-card">
+      <span class="fert-emoji">🐄</span>
+      <h3>Cow Dung Manure</h3>
+      <p>The oldest fertilizer known to farming. Rich in nitrogen, phosphorus, and potassium. Improves soil texture and moisture retention significantly.</p>
+      <span class="fert-tag">N-P-K Balanced</span>
+    </div>
+    <div class="fert-card">
+      <span class="fert-emoji">🍂</span>
+      <h3>Compost</h3>
+      <p>Decomposed kitchen and garden waste creates humus-rich soil amendment. Boosts microbial life and adds all essential macro and micronutrients.</p>
+      <span class="fert-tag">All Crops</span>
+    </div>
+    <div class="fert-card">
+      <span class="fert-emoji">🪱</span>
+      <h3>Vermicompost</h3>
+      <p>Worm castings are 5x more nutrient-rich than regular compost. Accelerates plant growth, improves root development, and suppresses disease.</p>
+      <span class="fert-tag">High Yield</span>
+    </div>
+    <div class="fert-card">
+      <span class="fert-emoji">🌿</span>
+      <h3>Neem Cake</h3>
+      <p>Residue after neem oil extraction. Acts as both fertilizer and natural pesticide. Repels soil pests and nematodes while feeding plants.</p>
+      <span class="fert-tag">Pest Resistant</span>
+    </div>
+    <div class="fert-card">
+      <span class="fert-emoji">🌊</span>
+      <h3>Green Manure</h3>
+      <p>Growing leguminous crops like dhaincha and sunhemp, then ploughing them in. Fixes atmospheric nitrogen directly into soil naturally.</p>
+      <span class="fert-tag">Nitrogen Fixing</span>
+    </div>
+    <div class="fert-card">
+      <span class="fert-emoji">🪨</span>
+      <h3>Bone Meal</h3>
+      <p>High phosphorus content from ground animal bones. Promotes strong root development and flowering. Ideal for fruiting and flowering crops.</p>
+      <span class="fert-tag">Root Growth</span>
+    </div>
+    <div class="fert-card">
+      <span class="fert-emoji">🌊</span>
+      <h3>Seaweed Extract</h3>
+      <p>Contains over 60 trace minerals, plant hormones, and amino acids. Enhances stress tolerance, improves germination, and boosts yield.</p>
+      <span class="fert-tag">Micronutrients</span>
+    </div>
+    <div class="fert-card">
+      <span class="fert-emoji">🍌</span>
+      <h3>Banana Peel Fertilizer</h3>
+      <p>Potassium-rich liquid fertilizer made from banana peels. Promotes fruit development, flowering, and overall plant immunity naturally.</p>
+      <span class="fert-tag">Potassium Rich</span>
+    </div>
+  </div>
+</section>
+
+<!-- CROPS TABLE -->
+<section id="crops">
+  <div class="reveal">
+    <span class="section-label">Crop Guide</span>
+    <h2 class="section-title">Which Fertilizer for<br>Which Crop?</h2>
+    <p class="section-sub">A practical, farmer-friendly guide to matching the right organic fertilizer with your crop for maximum natural yield.</p>
+  </div>
+  <div class="crops-wrapper reveal">
+    <table>
+      <thead>
+        <tr>
+          <th>Crop</th>
+          <th>Recommended Fertilizers</th>
+          <th>Application Time</th>
+          <th>Key Benefit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>🌾 Rice</td>
+          <td>
+            <span class="tag-pill">Compost</span>
+            <span class="tag-pill">Green Manure</span>
+            <span class="tag-pill">Cow Dung</span>
+          </td>
+          <td>Before transplanting + mid-season</td>
+          <td><span class="benefit-dot"></span>High nitrogen supply for leafy growth</td>
+        </tr>
+        <tr>
+          <td>🍅 Tomato</td>
+          <td>
+            <span class="tag-pill">Vermicompost</span>
+            <span class="tag-pill">Bone Meal</span>
+            <span class="tag-pill">Neem Cake</span>
+          </td>
+          <td>At planting + flowering stage</td>
+          <td><span class="benefit-dot"></span>Strong roots, disease-free fruits</td>
+        </tr>
+        <tr>
+          <td>🌶️ Chili</td>
+          <td>
+            <span class="tag-pill">Neem Cake</span>
+            <span class="tag-pill">Banana Peel</span>
+            <span class="tag-pill">Compost</span>
+          </td>
+          <td>Every 3 weeks during growth</td>
+          <td><span class="benefit-dot"></span>Natural pest control + potassium boost</td>
+        </tr>
+        <tr>
+          <td>🌿 Cotton</td>
+          <td>
+            <span class="tag-pill">Green Manure</span>
+            <span class="tag-pill">Cow Dung</span>
+            <span class="tag-pill">Seaweed</span>
+          </td>
+          <td>Pre-sowing + boll formation</td>
+          <td><span class="benefit-dot"></span>Improved fiber quality naturally</td>
+        </tr>
+        <tr>
+          <td>💛 Turmeric</td>
+          <td>
+            <span class="tag-pill">Vermicompost</span>
+            <span class="tag-pill">Wood Ash</span>
+            <span class="tag-pill">Neem Cake</span>
+          </td>
+          <td>Planting + 60 days after</td>
+          <td><span class="benefit-dot"></span>High curcumin content, no chemicals</td>
+        </tr>
+        <tr>
+          <td>🧅 Onion</td>
+          <td>
+            <span class="tag-pill">Bone Meal</span>
+            <span class="tag-pill">Compost</span>
+            <span class="tag-pill">Wood Ash</span>
+          </td>
+          <td>At bulb formation stage</td>
+          <td><span class="benefit-dot"></span>Bigger bulbs, longer shelf life</td>
+        </tr>
+        <tr>
+          <td>🥜 Groundnut</td>
+          <td>
+            <span class="tag-pill">Rhizobium</span>
+            <span class="tag-pill">Compost</span>
+            <span class="tag-pill">Gypsum</span>
+          </td>
+          <td>Seed treatment + flowering</td>
+          <td><span class="benefit-dot"></span>Natural nitrogen fixation in pods</td>
+        </tr>
+        <tr>
+          <td>🌽 Maize</td>
+          <td>
+            <span class="tag-pill">Cow Dung</span>
+            <span class="tag-pill">Green Manure</span>
+            <span class="tag-pill">Compost Tea</span>
+          </td>
+          <td>Before sowing + 4-week intervals</td>
+          <td><span class="benefit-dot"></span>Tall stalks, dense grain formation</td>
+        </tr>
+        <tr>
+          <td>🍌 Banana</td>
+          <td>
+            <span class="tag-pill">Vermicompost</span>
+            <span class="tag-pill">Seaweed</span>
+            <span class="tag-pill">Cow Dung</span>
+          </td>
+          <td>Monthly application</td>
+          <td><span class="benefit-dot"></span>Year-round fruiting, organic produce</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- TREES -->
+<section id="trees">
+  <div class="trees-layout reveal">
+    <div class="trees-visual">
+      <div class="tree-fact">
+        <div class="tree-fact-icon">🌳</div>
+        <div class="tree-fact-text">
+          <h4>Carbon Absorption</h4>
+          <p>A single mature tree absorbs 22 kg of CO₂ per year and releases enough oxygen for 2 people to breathe.</p>
+        </div>
+      </div>
+      <div class="tree-fact">
+        <div class="tree-fact-icon">💧</div>
+        <div class="tree-fact-text">
+          <h4>Water Conservation</h4>
+          <p>Trees act as natural sponges, absorbing rainwater and slowly releasing it, preventing floods and droughts.</p>
+        </div>
+      </div>
+      <div class="tree-fact">
+        <div class="tree-fact-icon">🌡️</div>
+        <div class="tree-fact-text">
+          <h4>Temperature Control</h4>
+          <p>A single tree can cool its surroundings by up to 10°C, reducing the urban heat island effect naturally.</p>
+        </div>
+      </div>
+      <div class="tree-fact">
+        <div class="tree-fact-icon">🐦</div>
+        <div class="tree-fact-text">
+          <h4>Biodiversity Support</h4>
+          <p>One large tree can support over 500 species of insects, birds, and small mammals in its ecosystem.</p>
+        </div>
+      </div>
+    </div>
+    <div class="trees-text">
+      <span class="section-label">Tree Plantation</span>
+      <h2 class="section-title">Why We Must Plant More Trees</h2>
+      <p class="section-sub">Trees are the lungs of our planet. Planting and protecting trees is the most powerful individual action against climate change.</p>
+      <ul class="tree-list">
+        <li>Planting native trees around farmlands creates natural windbreaks that protect crops from harsh weather.</li>
+        <li>Tree roots prevent soil erosion and maintain soil structure, keeping farmland productive for generations.</li>
+        <li>Agroforestry — combining trees with crops — increases total farm income by 30–40% without chemical inputs.</li>
+        <li>Trees attract beneficial insects that naturally pollinate crops, replacing the need for chemical pollination aids.</li>
+        <li>Fallen leaves create natural mulch that suppresses weeds and feeds soil microorganisms organically.</li>
+        <li>Community tree plantation drives bring villages together and create green corridors for wildlife movement.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- AWARENESS -->
+<section id="awareness">
+  <div class="reveal">
+    <span class="section-label">Take Action</span>
+    <h2 class="section-title">What You Can Do Today</h2>
+    <p class="section-sub">Every farmer, family, and community member can make a difference. Small changes in practice create lasting environmental impact.</p>
+  </div>
+  <div class="awareness-grid reveal">
+    <div class="awareness-card">
+      <div class="icon">🏡</div>
+      <h3>Start Home Composting</h3>
+      <p>Turn kitchen waste into rich fertilizer. A simple pit or bin can produce compost in 45 days — free fertilizer from waste.</p>
+    </div>
+    <div class="awareness-card">
+      <div class="icon">📖</div>
+      <h3>Learn Traditional Methods</h3>
+      <p>Our ancestors used panchagavya, jeevamrutha, and crop rotation for thousands of years. Revive this wisdom.</p>
+    </div>
+    <div class="awareness-card">
+      <div class="icon">🤝</div>
+      <h3>Educate Fellow Farmers</h3>
+      <p>Share knowledge about organic alternatives in your village. Create farmer groups to exchange natural farming experiences.</p>
+    </div>
+    <div class="awareness-card">
+      <div class="icon">🌱</div>
+      <h3>Plant One Tree Monthly</h3>
+      <p>A commitment of just one tree per month per family could reforest entire districts within a decade.</p>
+    </div>
+    <div class="awareness-card">
+      <div class="icon">🛒</div>
+      <h3>Buy Organic Produce</h3>
+      <p>Consumer demand drives change. Choosing organic foods supports farmers who have switched to natural methods.</p>
+    </div>
+    <div class="awareness-card">
+      <div class="icon">💬</div>
+      <h3>Spread Awareness</h3>
+      <p>Talk to your family, school, and community about the dangers of chemical farming and benefits of natural alternatives.</p>
+    </div>
+    <div class="awareness-card">
+      <div class="icon">🧪</div>
+      <h3>Test Your Soil</h3>
+      <p>Know your soil health before applying anything. Simple soil test kits reveal exactly what nutrients your land needs.</p>
+    </div>
+    <div class="awareness-card">
+      <div class="icon">🌊</div>
+      <h3>Protect Water Sources</h3>
+      <p>Never let chemical runoff reach water bodies. Create buffer zones with plants between farmland and water sources.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-layout">
+    <div class="contact-info reveal">
+      <span class="section-label">Get Involved</span>
+      <h2 class="section-title" style="color:var(--white)">Join the Green Revolution</h2>
+      <p style="color:rgba(255,255,255,0.6); line-height:1.8; margin-bottom:32px;">
+        Have questions about natural farming? Want to share your organic farming experience or connect with our community? Reach out — we'd love to hear from you.
+      </p>
+      <div class="contact-detail"><span>🌿</span><span>HarithaSakthi Eco Farming Initiative</span></div>
+      <div class="contact-detail"><span>📍</span><span>CSE Department, Community Service Project</span></div>
+      <div class="contact-detail"><span>📧</span><span>haritha.sakthi@ecofarm.org</span></div>
+      <div class="contact-detail"><span>📞</span><span>+91 98765 43210</span></div>
+    </div>
+    <div class="reveal">
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="Farmer / Student name" required>
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" placeholder="+91 XXXXX XXXXX">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Your Role</label>
+          <select>
+            <option value="">Select your role</option>
+            <option>Farmer</option>
+            <option>Student</option>
+            <option>Teacher / Professor</option>
+            <option>Village Leader</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message or Question</label>
+          <textarea placeholder="Share your farming experience, ask a question, or suggest topics..."></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send Message 🌱</button>
+        <div class="success-msg" id="successMsg">
+          ✅ Thank you! We'll get back to you within 24 hours.
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">🌿 HarithaSakthi</div>
+  <p>© 2025 HarithaSakthi · CSP Project · Tree Plantation & Environmental Awareness Drive</p>
+  <p style="color:rgba(255,255,255,0.3); font-size:0.78rem;">Saving our soil, one farm at a time.</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const msg = document.getElementById('successMsg');
+    msg.style.display = 'block';
+    e.target.reset();
+    setTimeout(() => msg.style.display = 'none', 5000);
+  }
+
+  // Mobile menu
+  function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    if (links.style.display === 'flex') {
+      links.style.display = 'none';
+    } else {
+      links.style.cssText = 'display:flex; flex-direction:column; position:fixed; top:64px; left:0; right:0; background:rgba(26,58,42,0.98); padding:24px; gap:20px; z-index:998;';
+    }
+  }
+
+  // Active nav on scroll
+  const sections = document.querySelectorAll('section');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--green-light)' : '';
+    });
+  });
+</script>
+</body>
+</html>
